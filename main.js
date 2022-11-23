@@ -1,12 +1,15 @@
 // My Contacts Basic
 
-let Contact = [];
-
-
 // HTML Elements
 let goBtnEl = document.getElementById('go-btn');
 let menuEl = document.getElementById('menu');
 let outputEl = document.getElementById('output');
+
+
+// Array & initalization
+let Contact = loadStorage();
+displayAll();
+
 
 // Go Btn - Menu Listener
 goBtnEl.addEventListener('click', goBtnHandler);
@@ -30,7 +33,7 @@ function goBtnHandler() {
 
 // MENU FUNCTIONS
 function displayContacts() {
-  console.log('Display Contacts');
+  displayAll();
 }
 
 function addContact() {
@@ -39,7 +42,7 @@ function addContact() {
   let ContactPhone = +prompt("Enter Contact Phone:")
   let ContactCountry = +prompt("Enter Contact Country:")
   Contact.push(newContact(ContactName, ContactEmail, ContactPhone, ContactCountry));
-  saveContact()
+  saveContact();
   displayAll();
 }
 
@@ -75,7 +78,7 @@ function newContact(ContactName, ContactEmail, ContactPhone, ContactCountry){
 // display all Contact
 function displayAll() {
   let outputStr = '';
-  for (let i = 0; i < contact.length; i++){
+  for (let i = 0; i < Contact.length; i++){
     outputStr += getContactHTMLStr(Contact[i], i);
   }
   outputEl.innerHTML = outputStr;
@@ -85,9 +88,9 @@ function displayAll() {
 function getContactHTMLStr(Contact, i) {
   return `
     <div class="">
-      ${i}: ${Contact.name}
-      ${Contact.Email}
-      ${Contact.Phone} (${Contact.Country})
+      <h2>${i}: ${Contact.name}</h2>
+      <p>${Contact.Email}</p>
+      <p>${Contact.Phone} (${Contact.Country})</p>
     </div>
   `
 }
@@ -100,7 +103,7 @@ function saveContact() {
 
 // load Contact from local storage
 
-function loadContact() {
+function loadStorage() {
   let ContactStr = localStorage.getItem('Contact');
   return JSON.parse(ContactStr) ?? [];
 }
