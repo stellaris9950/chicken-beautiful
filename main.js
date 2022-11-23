@@ -1,5 +1,8 @@
 // My Contacts Basic
 
+let Contact = [];
+
+
 // HTML Elements
 let goBtnEl = document.getElementById('go-btn');
 let menuEl = document.getElementById('menu');
@@ -31,7 +34,13 @@ function displayContacts() {
 }
 
 function addContact() {
-  console.log('Add Contact');
+  let ContactName = +prompt("Enter Contact Name:")
+  let ContactEmail = +prompt("Enter Contact Email:")
+  let ContactPhone = +prompt("Enter Contact Phone:")
+  let ContactCountry = +prompt("Enter Contact Country:")
+  Contact.push(newContact(ContactName, ContactEmail, ContactPhone, ContactCountry));
+  saveContact()
+  displayAll();
 }
 
 function removeContact() {
@@ -44,4 +53,54 @@ function displayByName() {
 
 function displayByCountry() {
   console.log('Display by Country');
+}
+
+
+
+
+
+
+// Helper Functions
+// HELPER FUNCTION
+// return a new Contact with completion property
+function newContact(ContactName, ContactEmail, ContactPhone, ContactCountry){
+  return {
+    name: ContactName,
+    Email: ContactEmail,
+    Phone: ContactPhone,
+    Country: ContactCountry
+  };
+}
+
+// display all Contact
+function displayAll() {
+  let outputStr = '';
+  for (let i = 0; i < contact.length; i++){
+    outputStr += getContactHTMLStr(Contact[i], i);
+  }
+  outputEl.innerHTML = outputStr;
+}
+
+// get html for givin Contact
+function getContactHTMLStr(Contact, i) {
+  return `
+    <div class="">
+      ${i}: ${Contact.name}
+      ${Contact.Email}
+      ${Contact.Phone} (${Contact.Country})
+    </div>
+  `
+}
+
+// save global Contact to local storage
+function saveContact() {
+  localStorage.setItem('Contact', JSON.stringify(Contact))
+}
+
+
+// load Contact from local storage
+
+function loadContact() {
+  let ContactStr = localStorage.getItem('Contact');
+  return JSON.parse(ContactStr) ?? [];
 }
