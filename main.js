@@ -47,7 +47,15 @@ function addContact() {
 }
 
 function removeContact() {
-  console.log('Remove Contact');
+  let index = +prompt('Enter # of Contact:');
+  if (index >= 0 && index < Contact.length) {
+    Contact.splice(index, 1)
+    saveContact();
+    displayAll();
+  }
+  else {
+    alert('invalid Contact #')
+  }
 }
 
 function displayByName() {
