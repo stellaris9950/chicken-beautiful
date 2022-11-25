@@ -37,10 +37,10 @@ function displayContacts() {
 }
 
 function addContact() {
-  let ContactName = +prompt("Enter Contact Name:")
-  let ContactEmail = +prompt("Enter Contact Email:")
-  let ContactPhone = +prompt("Enter Contact Phone:")
-  let ContactCountry = +prompt("Enter Contact Country:")
+  let ContactName = prompt("Enter Contact Name:")
+  let ContactEmail = prompt("Enter Contact Email:")
+  let ContactPhone = prompt("Enter Contact Phone:")
+  let ContactCountry = prompt("Enter Contact Country:")
   Contact.push(newContact(ContactName, ContactEmail, ContactPhone, ContactCountry));
   saveContact();
   displayAll();
@@ -59,15 +59,51 @@ function removeContact() {
 }
 
 function displayByName() {
-  console.log('Display by Name');
+  let outputStr = '';
+  let searchName = prompt("Enter name you want to see:");
+  for (let i = 0; i < Contact.length; i++){
+    if (Contact[i].name === searchName){
+      outputStr += getContactHTMLStr(Contact[i], i);
+    } 
+  }
+  outputEl.innerHTML = outputStr;
 }
 
 function displayByCountry() {
-  console.log('Display by Country');
+  let outputStr = '';
+  let searchCountry = prompt("Enter Country you want to see:");
+  for (let i = 0; i < Contact.length; i++){
+    if (Contact[i].Country === searchCountry){
+      outputStr += getContactHTMLStr(Contact[i], i);
+    } 
+  }
+  outputEl.innerHTML = outputStr;
 }
 
+function displayByEmail(){
+  let searchEmail = prompt("Enter Email you want to search:")
+  let index = findByEmail(searchEmail);
+  if (index === -1) {
+    alert(`Contact with that email could not be found.`)
+  } else {
+    alert(`Contact with that email was found at position ${index}.`);
+  }
+
+}
+
+function findByEmail(){
+  .
 
 
+
+
+
+
+
+
+
+  
+}
 
 
 
