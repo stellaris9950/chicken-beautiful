@@ -28,6 +28,8 @@ function goBtnHandler() {
     displayByName();
   } else if (selection === 'display-country') {
     displayByCountry();
+  } else if (selection === 'display-email'){
+    displayByEmail();
   }
 }
 
@@ -91,18 +93,17 @@ function displayByEmail(){
 
 }
 
-function findByEmail(){
-  .
-
-
-
-
-
-
-
-
-
-  
+function findByEmail(searchEmail){
+  let emailStr = ``
+  for (let i = 0; i < Contact.length; i++){
+    if (Contact[i].Email === searchEmail){
+      
+      return ;
+    } else {
+      return(-1);
+    }
+  }
+  outputEl.innerHTML = outputStr;  
 }
 
 
